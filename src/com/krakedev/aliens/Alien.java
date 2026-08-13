@@ -9,6 +9,7 @@ public class Alien {
     private double precioExtremidad;
     private double precioOjo;
     private double precioCuerpo;
+    private double precioTotal;
 
     public Alien(int tamanio, String color) {
         if (tamanio < 5) {
@@ -23,6 +24,9 @@ public class Alien {
         this.precioCuerpo = tamanio * 0.20;
         this.precioExtremidad = tamanio * 0.10;
         this.precioOjo = tamanio * 0.05;
+
+        this.precioTotal = 0;
+        calcularPrecioTotal();
     }
 
     public int getTamanio() {
@@ -57,6 +61,17 @@ public class Alien {
         return precioCuerpo;
     }
 
+    public double getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void calcularPrecioTotal() {
+        int totalExtremidades = this.numeroBrazos + this.numeroPies;
+        this.precioTotal = this.precioCuerpo
+                + (totalExtremidades * this.precioExtremidad)
+                + (this.numeroOjos * this.precioOjo);
+    }
+
     public void imprimir() {
         System.out.println("----- Datos del Alien -----");
         System.out.println("Tamaño: " + tamanio + " cm");
@@ -67,22 +82,28 @@ public class Alien {
         System.out.println("Precio cuerpo: $" + precioCuerpo);
         System.out.println("Precio extremidad: $" + precioExtremidad);
         System.out.println("Precio ojo: $" + precioOjo);
+        System.out.println("Precio total: $" + precioTotal);
         System.out.println("----------------------------");
     }
+
     public boolean agregarBrazos(int cantidad) {
         if (this.numeroBrazos + this.numeroPies + cantidad > 10) {
             return false;
         }
         this.numeroBrazos += cantidad;
+        calcularPrecioTotal();
         return true;
     }
+
     public boolean agregarPiernas(int cantidad) {
         if (this.numeroBrazos + this.numeroPies + cantidad > 10) {
             return false;
         }
         this.numeroPies += cantidad;
+        calcularPrecioTotal();
         return true;
     }
+
     public boolean agregarOjos(int cantidad) {
         int maximoOjos;
 
@@ -99,6 +120,7 @@ public class Alien {
         }
 
         this.numeroOjos += cantidad;
+        calcularPrecioTotal();
         return true;
     }
 }
