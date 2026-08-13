@@ -83,4 +83,22 @@ public class Alien {
         this.numeroPies += cantidad;
         return true;
     }
+    public boolean agregarOjos(int cantidad) {
+        int maximoOjos;
+
+        if (this.tamanio >= 5 && this.tamanio <= 10) {
+            maximoOjos = 3;
+        } else if (this.tamanio > 10 && this.tamanio <= 20) {
+            maximoOjos = 5;
+        } else {
+            maximoOjos = 7;
+        }
+
+        if (this.numeroOjos + cantidad > maximoOjos) {
+            return false;
+        }
+
+        this.numeroOjos += cantidad;
+        return true;
+    }
 }
