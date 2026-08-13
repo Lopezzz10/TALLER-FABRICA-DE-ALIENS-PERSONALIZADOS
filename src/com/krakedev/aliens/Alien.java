@@ -69,4 +69,11 @@ public class Alien {
         System.out.println("Precio ojo: $" + precioOjo);
         System.out.println("----------------------------");
     }
+    public boolean agregarBrazos(int cantidad) {
+        if (this.numeroBrazos + this.numeroPies + cantidad > 10) {
+            return false;
+        }
+        this.numeroBrazos += cantidad;
+        return true;
+    }
 }
